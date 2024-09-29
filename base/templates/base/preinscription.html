@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Préinscription{% endblock title %}
+
+{% block preinscriptionactive %}
+menu-active
+{% endblock preinscriptionactive %}
+
+{% block content %}
+{% load static %}
+<div class="welcome-message">
+    <h1>Bienvenue sur la page de demande d'inscription</h1>
+    <p>Vous êtes appelé à remplir le formulaire ci-dessous.</p>
+    <p>Notez bien : vous devez joindre à ce formulaire un fichier de vos documents scolaires scannés en PDF.</p>
+</div>
+
+
+<div class="contact-container">
+    <div class="contact-wrapper">
+        <div class="contact-left">
+            <img src="{% static 'img/cont.jpg' %}" alt="Preinscription Image" class="contact-image">
+        </div>
+        <div class="contact-right">
+            <h2>Préinscription</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="first_name" class="contact-field" placeholder="Votre Prénom" required>
+                <input type="text" name="last_name" class="contact-field" placeholder="Votre Nom" required>
+                <input type="email" name="email" class="contact-field" placeholder="Votre Email" required>
+                <textarea name="description" placeholder="Description" class="contact-field" required></textarea>
+                <input type="file" name="document" class="contact-field" required>
+                <button type="submit" class="contact-btn">Soumettre</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="contact-info">
+    <div class="contact-info-wrapper">
+        <div class="info-item">
+            <h3>Adresse</h3>
+            <p>123 Rue Exemple, Ville, Pays</p>
+        </div>
+        <div class="info-item">
+            <h3>Téléphone</h3>
+            <p>+123 456 7890</p>
+        </div>
+        <div class="info-item">
+            <h3>Email</h3>
+            <p>contact@example.com</p>
+        </div>
+        <div class="info-item">
+            <h3>Réseaux Sociaux</h3>
+            <div class="social-media">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Twitter</a>
+                <a href="#" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

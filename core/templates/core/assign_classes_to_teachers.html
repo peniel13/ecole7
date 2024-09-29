@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Assign Classes to Teachers</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="class_id">Select Class:</label>
+    <select name="class_id" id="class_id">
+        {% for cls in unassigned_classes %}
+            <option value="{{ cls.id }}">{{ cls.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="teacher_ids">Select Teachers:</label>
+    <select name="teacher_ids" id="teacher_ids" multiple>
+        {% for teacher in teachers %}
+            <option value="{{ teacher.id }}">{{ teacher.email }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Assign</button>
+</form>
+{% endblock %}

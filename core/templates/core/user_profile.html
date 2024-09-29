@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="user-profile-container">
+    <h2 class="text-center">Bienvenue dans votre profil</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Partie Profil Utilisateur -->
+            <h3>Profil Utilisateur</h3>
+            <div class="profile-section text-center">
+                {% if user.profile_pic %}
+                    <img src="{{ user.profile_pic.url }}" alt="Profile Picture" class="img-fluid rounded-circle profile-pic">
+                {% else %}
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user" class="img-fluid rounded-circle profile-pic">
+                {% endif %}
+                <div class="user-info">
+                    <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>Rôle:</strong> {{ user.get_role_display }}</p>
+                    <p><strong>Adresse:</strong> {{ user.address }}</p>
+                    <p><strong>Téléphone:</strong> {{ user.phone }}</p>
+                    <p><strong>Bio:</strong> {{ user.bio }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <!-- Partie Mise à Jour du Profil -->
+            <h3>Modifier le Profil</h3>
+            <form method="post" enctype="multipart/form-data" class="form-group">
+                {% csrf_token %}
+                <input type="text" name="first_name" class="user-field form-control" placeholder="Prénom" value="{{ user.first_name }}" required>
+                <input type="text" name="last_name" class="user-field form-control" placeholder="Nom" value="{{ user.last_name }}" required>
+                <input type="email" name="email" class="user-field form-control" placeholder="Votre Email" value="{{ user.email }}" required>
+                <input type="file" name="profile_pic" class="user-field form-control-file">
+                <input type="text" name="address" class="user-field form-control" placeholder="Adresse" value="{{ user.address }}">
+                <input type="text" name="phone" class="user-field form-control" placeholder="Téléphone" value="{{ user.phone }}">
+                <textarea name="bio" placeholder="Bio" class="user-field form-control">{{ user.bio }}</textarea>
+                <button type="submit" class="btn btn-primary">Mettre à jour le Profil</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

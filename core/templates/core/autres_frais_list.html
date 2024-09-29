@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2>Liste des Autres Frais pour {{ student.first_name }} {{ student.last_name }}</h2>
+
+    <div class="frais-list">
+        {% if autres_frais %}
+            <ul>
+                {% for frais in autres_frais %}
+                    <li class="frais-item">
+                        <div class="frais-details">
+                            <span><strong>Motif:</strong> {{ frais.motif }}</span> - 
+                            <span><strong>Date:</strong> {{ frais.date_frais }}</span> - 
+                            <span><strong>Montant:</strong> {{ frais.montant }} €</span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun frais enregistré.</p>
+        {% endif %}
+    </div>
+
+    <div class="actions">
+
+        <a class="btn-back" href="{% url 'student_dashboard' student.id %}">Retour au tableau de bord</a>
+    </div>
+</div>
+{% endblock %}

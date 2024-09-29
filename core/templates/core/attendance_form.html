@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="attendance-update-container">
+    <h2>Mettre à Jour l'Assiduité pour {{ student.first_name }} {{ student.last_name }}</h2>
+
+    <form method="post" class="attendance-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="absences">Absences :</label>
+            <input type="number" id="absences" name="absences" value="{{ attendance.absences }}" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="presences">Présences :</label>
+            <input type="number" id="presences" name="presences" value="{{ attendance.presences }}" min="0" required>
+        </div>
+        <button type="submit" class="btn-submit">Mettre à Jour l'Assiduité</button>
+    </form>
+
+    {% if messages %}
+        <div class="message-container">
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    
+</div>
+{% endblock %}

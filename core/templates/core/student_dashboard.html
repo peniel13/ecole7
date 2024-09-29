@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="student-dashboard-container">
+    <h2>Tableau de Bord de {{ student.first_name }} {{ student.last_name }}</h2>
+
+    <div class="profile-section">
+        {% if student.profile_pic %}
+            <img src="{{ student.profile_pic.url }}" alt="Photo de Profil" class="profile-pic">
+        {% else %}
+            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Default Profile Picture" class="profile-pic">
+        {% endif %}
+        <div>
+            <p><strong>Email:</strong> {{ student.email }}</p>
+            <p><strong>Adresse:</strong> {{ student.address }}</p>
+            <p><strong>Téléphone:</strong> {{ student.phone }}</p>
+        </div>
+    </div>
+
+    <h3>Classes Assignées</h3>
+    <div class="card-container">
+        {% for assignment in student_classes %}
+            <div class="card">
+                <h4>
+                    <a href="{% url 'class_detail' assignment.student_class.id %}">
+                        {{ assignment.student_class.name }} (Année: {{ assignment.student_class.year }})
+                    </a>
+                </h4>
+            </div>
+        {% empty %}
+            <div class="card no-classes">Aucune classe assignée.</div>
+        {% endfor %}
+    </div>
+
+    <div class="card-container">
+        <div class="card">
+            <h3>Paiements</h3>
+            <p>Vous avez {{ payments.count }} paiement(s).</p>
+            <a href="{% url 'payment_list' student.id %}">Voir les détails</a>
+        </div>
+
+        <div class="card">
+            <h3>Comportement</h3>
+            <p>Vous avez {{ behaviors.count }} enregistrement(s) de comportement.</p>
+            <a href="{% url 'behavior_list' student.id %}">Voir les détails</a>
+        </div>
+
+        <div class="card">
+            <h3>Notes</h3>
+            <p>Vous avez {{ notes.count }} note(s).</p>
+            <a href="{% url 'note_list' student.id %}">Voir les détails</a>
+        </div>
+
+        <div class="card">
+            <h3>Présences</h3>
+            <p>Vous avez {{ attendances.count }} enregistrement(s) de présence.</p>
+            <a href="{% url 'attendance_list' student.id %}">Voir les détails</a>
+        </div>
+
+        <div class="card">
+            <h3>Autres Frais</h3>
+            <p>Vous avez {{ autres_frais.count }} frais enregistré(s).</p>
+            <a href="{% url 'autres_frais_list' student.id %}">Voir les détails</a>
+        </div>
+        <div class="card">
+            <h3>Convocations</h3>
+            <p>Vous avez {{ convocations.count }} convocation(s) enregistrée(s).</p>
+            <a href="{% url 'convocation_list' student.id %}">Voir les détails</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

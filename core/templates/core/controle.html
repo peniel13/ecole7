@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <h1>Tableau de Bord Administrateur</h1>
+
+    <div class="stats-container">
+        <h2>Nombre Total d'Étudiants : <span>{{ total_students }}</span></h2>
+        <h2>Nombre Total de Professeurs : <span>{{ total_teachers }}</span></h2>
+        <h2>Nombre Total de Classes : <span>{{ total_classes }}</span></h2>
+        <h2>Nombre Total d'Étudiants Assignés : <span>{{ total_assigned_students }}</span></h2>
+        <h2>Montant Total des Frais Collectés : <span>{{ total_fees_collected }} €</span></h2>
+    </div>
+
+    <div class="tables-container">
+        <h3>Paiements par Mois</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mois</th>
+                    <th>Total des Paiements</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for month, total in payment_count_by_month.items %}
+                <tr>
+                    <td>{{ month }}</td>
+                    <td>{{ total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Paiements par Classe et par Mois</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom de la Classe</th>
+                    <th>Mois</th>
+                    <th>Total des Paiements</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for class_name, month_data in payments_by_class_and_month.items %}
+                    {% for month, total in month_data.items %}
+                    <tr>
+                        <td>{{ class_name }}</td>
+                        <td>{{ month }}</td>
+                        <td>{{ total }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="lists-container">
+        <h3>Classes</h3>
+        <ul>
+            {% for class in classes %}
+            <li>
+                {{ class.name }} (Total d'Étudiants : {{ class.student_count }})
+                <a href="{% url 'class_detail' class.id %}" class="btn-view">Voir</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Professeurs</h3>
+        <ul>
+            {% for teacher in teachers %}
+            <li>
+                <a href="{% url 'teacher_dashboard' teacher.id %}">{{ teacher.first_name }} {{ teacher.last_name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

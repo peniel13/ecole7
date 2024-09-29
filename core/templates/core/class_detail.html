@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="class-detail-container">
+    <h2 class="class-detail-title">Détails de la Classe : {{ class_instance.name }}</h2>
+
+    <h3 class="class-detail-subtitle">Étudiants</h3>
+
+    <form method="get" class="search-form">
+        <input type="text" name="search_query" placeholder="Rechercher des étudiants" value="{{ search_query }}">
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <h4>Total d'Étudiants : {{ total_students }}</h4>
+
+    <div class="student-list">
+        {% for student in students %}
+            <div class="student-card">
+                <a href="{% url 'student_dashboard' student.id %}" class="student-info">
+                    {% if student.profile_pic %}
+                        <img src="{{ student.profile_pic.url }}" alt="{{ student.first_name }} {{ student.last_name }}">
+                    {% else %}
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="default profile">
+                    {% endif %}
+                    <div>
+                        <div class="student-name">{{ student.first_name }} {{ student.last_name }}</div>
+                    </div>
+                </a>
+                <div class="btn-container">
+                    {% if request.user.role != 'student' %}
+                        <a class="btn" href="{% url 'payment_form' student.id %}">Faire un Paiement</a>
+                        <a class="btn" href="{% url 'behavior_form' student.id %}">Soumettre Comportement</a>
+                        <a class="btn" href="{% url 'note_form' student.id %}">Soumettre Note</a>
+                        <a class="btn" href="{% url 'attendance_form' student.id %}">Soumettre Présence</a>
+                        <a class="btn" href="{% url 'declare_autres_frais' student.id %}">Déclarer Autres Frais</a>
+                        <a class="btn" href="{% url 'convocation_form' student.id %}">Déclarer une Convocation</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p>Aucun étudiant inscrit.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if students.has_previous %}
+                <a href="?page=1&search_query={{ search_query }}">Premier</a>
+                <a href="?page={{ students.previous_page_number }}&search_query={{ search_query }}">Précédent</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ students.number }} sur {{ students.paginator.num_pages }}.
+            </span>
+
+            {% if students.has_next %}
+                <a href="?page={{ students.next_page_number }}&search_query={{ search_query }}">Suivant</a>
+                <a href="?page={{ students.paginator.num_pages }}&search_query={{ search_query }}">Dernier</a>
+            {% endif %}
+        </span>
+    </div>
+
+    {% if request.user.role != 'student' %}
+        <h3 class="class-detail-subtitle">Statistiques de Paiement</h3>
+        <p><strong>Montant Total Payé : </strong>{{ total_amount_paid }}</p>
+
+        <h4>Paiements par Mois</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mois</th>
+                    <th>Total des Paiements</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payments_by_month %}
+                <tr>
+                    <td>{{ payment.month }}</td>
+                    <td>{{ payment.monthly_total }}</td>
+                </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2">Aucun paiement enregistré.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h4>Paiements par Étudiant</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Étudiant</th>
+                    <th>Nombre de Paiements</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payments_per_student %}
+                <tr>
+                    <td>{{ payment.user__first_name }} {{ payment.user__last_name }}</td>
+                    <td>{{ payment.payment_count }}</td>
+                </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2">Aucun paiement enregistré.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

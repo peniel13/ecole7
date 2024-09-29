@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2>Comportements de {{ student.first_name }} {{ student.last_name }}</h2>
+
+    <div class="behaviors-list">
+        {% if behaviors %}
+            <ul>
+                {% for behavior in behaviors %}
+                    <li class="behavior-item">
+                        <div class="behavior-description">{{ behavior.commentaire }}</div>
+                        <div class="behavior-level">Niveau: {{ behavior.level }}</div>
+                        <div class="behavior-periode">Période: {{ behavior.periode }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun enregistrement de comportement.</p>
+        {% endif %}
+    </div>
+
+    <a class="btn-back" href="{% url 'student_dashboard' student.id %}">Retour au Tableau de Bord</a>
+</div>
+{% endblock %}

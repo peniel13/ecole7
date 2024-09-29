@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="welcome-message">
+    <h1>Payer en ligne</h1>
+    <p>Pour effectuer votre paiement de frais scolaire par Mobile Money, veuillez suivre les instructions ci-dessous.</p>
+</div>
+
+<div class="payeenligne-container">
+    <div class="payeenligne-wrapper">
+        <div class="payeenligne-left">
+            <h2>Instructions de Paiement</h2>
+            <ul>
+                <li>1. Sélectionnez le numéro correspondant à votre opérateur de réseau ci-dessous.</li>
+                <li>2. Effectuez le transfert du montant dû au numéro affiché.</li>
+                <li>3. Une fois le paiement effectué, entrez les informations dans le formulaire ci-dessous.</li>
+                <li>4. Cliquez sur "Effectuer le paiement" pour finaliser le processus.</li>
+                <li>5. Vérifiez ensuite la situation de paiement de votre enfant ou élève pour confirmer que le paiement a été enregistré.</li>
+            </ul>
+
+            <h3>Numéros pour le transfert :</h3>
+            <ul>
+                <li>
+                    <img src="{% static 'img/airtel.png' %}" alt="Opérateur A" class="operator-image"> Mobile Money - Opérateur A : +123456789
+                </li>
+                <li>
+                    <img src="{% static 'img/M-Pesa.jpg' %}" alt="Opérateur B" class="operator-image"> Mobile Money - Opérateur B : +987654321
+                </li>
+                <li>
+                    <img src="{% static 'img/orange.png' %}" alt="Opérateur C" class="operator-image"> Mobile Money - Opérateur C : +456789123
+                </li>
+            </ul>
+
+            <p>Assurez-vous de conserver une preuve de votre transaction. Si vous avez des questions, n'hésitez pas à nous contacter.</p>
+        </div>
+        <div class="payeenligne-right">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="name" class="contact-field" placeholder="Votre Nom" required>
+                <input type="email" name="email" class="contact-field" placeholder="Votre Email" required>
+                <input type="text" name="phone" class="contact-field" placeholder="Téléphone" required>
+                <input type="number" name="amount" class="contact-field" placeholder="Montant" required>
+                <input type="text" name="transaction_id" class="contact-field" placeholder="ID de transaction" required>
+                <input type="text" name="transaction_number" class="contact-field" placeholder="Numéro de transaction" required>
+                <textarea name="description" class="contact-field" placeholder="Description" required></textarea>
+                <button type="submit" class="contact-btn">Effectuer le paiement</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="contact-info">
+    <div class="contact-info-wrapper">
+        <div class="info-item">
+            <h3>Adresse</h3>
+            <p>123 Rue Exemple, Ville, Pays</p>
+        </div>
+        <div class="info-item">
+            <h3>Téléphone</h3>
+            <p>+123 456 7890</p>
+        </div>
+        <div class="info-item">
+            <h3>Email</h3>
+            <p>contact@example.com</p>
+        </div>
+        <div class="info-item">
+            <h3>Réseaux Sociaux</h3>
+            <div class="social-media">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Twitter</a>
+                <a href="#" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

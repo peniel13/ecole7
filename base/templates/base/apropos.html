@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ blog.title }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <article class="blog-post">
+        {% comment %} <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+        <h1>{{ blog.title }}</h1>
+        <small>{{ blog.created_at|date:"d M, Y" }}</small>
+        <p>{{ blog.description }}</p> {% endcomment %}
+       
+    </article>
+</div>
+<!-- INFORMATION -->
+<section id="information">
+    <div class="container text-center">
+        <h2>Bienvenue sur la page "Informations" de notre école</h2>
+        <p>Découvrez qui nous sommes et ce qui nous motive.</p>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 py-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="info-box">
+                            <img src="{% static 'img/icon6.png' %}" alt="">
+                            <div class="ms-4">
+                                <h5>Notre Mission</h5>
+                                <p>Nous sommes une école maternelle, primaire et secondaire dédiée à la formation et à l'encadrement des jeunes. Notre mission est de les préparer à devenir des citoyens responsables et épanouis.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="info-box">
+                            <img src="{% static 'img/icon4.png' %}" alt="">
+                            <div class="ms-4">
+                                <h5>Nos Valeurs</h5>
+                                <p>Nous croyons en l'éducation intégrale, en mettant l'accent sur le respect, la créativité et l'esprit d'équipe.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="info-box">
+                            <img src="{% static 'img/icon5.png' %}" alt="">
+                            <div class="ms-4">
+                                <h5>Nos Engagements</h5>
+                                <p>Nous nous engageons à offrir un environnement d'apprentissage stimulant et inclusif, où chaque élève peut s'épanouir.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <img src="{% static 'img/cont.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

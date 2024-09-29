@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="note-form-container">
+    <h2>Déclarer Note pour {{ student.first_name }} {{ student.last_name }}</h2>
+    <form method="post" class="note-form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn-submit">Soumettre la Note</button>
+    </form>
+</div>
+{% endblock %}

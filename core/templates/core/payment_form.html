@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="payment-form-container">
+    <h2>Paiement pour {{ student.first_name }} {{ student.last_name }}</h2>
+    <form method="post" class="payment-form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn-submit">Soumettre le Paiement</button>
+    </form>
+</div>
+{% endblock %}

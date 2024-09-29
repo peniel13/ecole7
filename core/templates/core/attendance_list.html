@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2>Registres de Présence pour {{ student.first_name }} {{ student.last_name }}</h2>
+
+    <div class="attendance-list">
+        {% if attendances %}
+            <ul>
+                {% for attendance in attendances %}
+                    <li class="attendance-item">
+                        <div class="attendance-record">
+                            <span>Absences: <strong>{{ attendance.absences }}</strong></span> - 
+                            <span>Présences: <strong>{{ attendance.presences }}</strong></span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun enregistrement de présence.</p>
+        {% endif %}
+    </div>
+
+    <a class="btn-back" href="{% url 'student_dashboard' student.id %}">Retour au Tableau de Bord</a>
+</div>
+{% endblock %}

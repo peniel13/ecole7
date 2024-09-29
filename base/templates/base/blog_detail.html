@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="blog-detail-container">
+    <div class="blog-detail-header">
+        <h1 class="blog-detail-title">{{ blog.title }}</h1>
+        <span class="blog-detail-date">{{ blog.created_at|date:"d M Y" }}</span>
+    </div>
+
+    <div class="blog-detail-main">
+        <div class="blog-detail-content">
+            <p>{{ blog.content }}</p>
+        </div>
+        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="blog-detail-image">
+        
+    </div>
+
+    <div class="related-blogs">
+        <h3>Autres Articles</h3>
+        <div class="related-blogs-list">
+            {% for related_blog in blogs %}
+                {% if related_blog.id != blog.id %}
+                    <div class="related-blog-card">
+                        <img src="{{ related_blog.image.url }}" alt="{{ related_blog.title }}" class="related-blog-image">
+                        <h4 class="related-blog-title">{{ related_blog.title }}</h4>
+                        <p class="related-blog-description">{{ related_blog.description }}</p>
+                        <a href="{% url 'blog_detail' related_blog.id %}" class="related-blog-read-more">Lire la suite</a>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <p>Aucun autre article disponible.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

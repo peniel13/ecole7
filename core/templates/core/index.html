@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome to DevDrive School System</h1>
+    <p>This is the home page where you can find general information about the system.</p>
+    {% if request.user.is_authenticated %}
+        <p>Hi, {{ request.user.first_name }}!</p>
+        {% if request.user.role == 'teacher' %}
+            <p>As a teacher, you can manage your classes and students from your dashboard.</p>
+        {% elif request.user.role == 'student' %}
+            <p>As a student, you can view your classes and track your progress from your dashboard.</p>
+        {% endif %}
+    {% else %}
+        <p>Please <a href="{% url 'signin' %}">login</a> or <a href="{% url 'signup' %}">sign up</a> to access more features.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

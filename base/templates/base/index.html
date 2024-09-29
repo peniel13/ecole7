@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ {% load static %}
+{% comment %} <div class="container">
+    <h1>Welcome to DevDrive School System</h1>
+    <p>This is the home page where you can find general information about the system.</p>
+</div> {% endcomment %}
+<!-- SLIDER -->
+<div class="owl-carousel owl-theme hero-slider">
+    <div class="slide slide1" style="background-image: url('{% static 'img/lect.jpg' %}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center text-white">
+                    <h6 class="text-white text-uppercase">Un Établissement Pour L'Avenir</h6>
+                    <h1 class="display-3 my-4">Éveillons la Curiosité<br />et la Créativité</h1>
+                    <a href="{% url 'preinscription' %}" class="btn btn-brand">Inscrivez-vous</a>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-light ms-3">Contacter nous</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide slide2" style="background-image: url('{% static 'img/bb.jpg' %}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-10 offset-lg-1 text-white">
+                    <h6 class="text-white text-uppercase">Bienvenue a l'ecole Prixima</h6>
+                    <h1 class="display-3 my-4">Un Environnement educatif<br />Pour Tous</h1>
+                    <a href="{% url 'preinscription' %}" class="btn btn-brand">Rejoignez-Nous</a>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-light ms-3">Contacter nous</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- ABOUT -->
+<section id="information">
+    <div class="container text-center">
+        </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 py-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="info-box">
+                            <img src="{% static 'img/icon6.png' %}" alt="">
+                            <div class="ms-4">
+                                <h5>Notre Mission</h5>
+                                <p>Nous sommes une école maternelle, primaire et secondaire dédiée à la formation et à l'encadrement des jeunes. Notre mission est de les préparer à devenir des citoyens responsables et épanouis.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="info-box">
+                            <img src="{% static 'img/icon4.png' %}" alt="">
+                            <div class="ms-4">
+                                <h5>Nos Valeurs</h5>
+                                <p>Nous croyons en l'éducation intégrale, en mettant l'accent sur le respect, la créativité et l'esprit d'équipe.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="info-box">
+                            <img src="{% static 'img/icon5.png' %}" alt="">
+                            <div class="ms-4">
+                                <h5>Nos Engagements</h5>
+                                <p>Nous nous engageons à offrir un environnement d'apprentissage stimulant et inclusif, où chaque élève peut s'épanouir.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <img src="{% static 'img/cont.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- MILESTONE -->
+    <section id="milestone">
+        <div class="container">
+            <div class="row text-center justify-content-center gy-4">
+                <div class="col-lg-2 col-sm-6">
+                    <h1 class="display-4">5K+</h1>
+                    <p class="mb-0">Élèves Inscrits</p>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <h1 class="display-4">1K+</h1>
+                    <p class="mb-0">Diplômes Remis</p>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <h1 class="display-4">300+</h1>
+                    <p class="mb-0">Activités Scolaires</p>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <h1 class="display-4">20+</h1>
+                    <p class="mb-0">Projets Communautaires</p>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <h1 class="display-4">10</h1>
+                    <p class="mb-0">Années d'Expérience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="services" class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="intro">
+                        <h6>Nos Services</h6>
+                        <h1>Que Faisons-Nous ?</h1>
+                        <p class="mx-auto">Nous offrons une gamme complète de services éducatifs pour accompagner chaque élève dans son parcours scolaire, de l'apprentissage des bases à l'accompagnement vers l'avenir.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{% static 'img/icon1.png' %}" alt="Cours Académiques">
+                        <h5>Cours Académiques</h5>
+                        <p>Des programmes d'enseignement adaptés à chaque niveau pour garantir une compréhension solide des matières fondamentales.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{% static 'img/icon2.png' %}" alt="Activités Extrascolaires">
+                        <h5>Activités Extrascolaires</h5>
+                        <p>Des clubs et des activités variées pour encourager la créativité, le sport et l'esprit d'équipe.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{% static 'img/icon3.png' %}" alt="Orientation Professionnelle">
+                        <h5>Orientation Professionnelle</h5>
+                        <p>Des conseils et des ressources pour aider les élèves à planifier leur avenir académique et professionnel.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{% static 'img/icon4.png' %}" alt="Soutien Psychologique">
+                        <h5>Soutien Psychologique</h5>
+                        <p>Un accompagnement pour le bien-être émotionnel et mental des élèves, avec des professionnels disponibles.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{% static 'img/icon5.png' %}" alt="Projets Communautaires">
+                        <h5>Projets Communautaires</h5>
+                        <p>Des initiatives qui permettent aux élèves de s'engager et de contribuer à leur communauté.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{% static 'img/icon6.png' %}" alt="Ateliers de Développement Personnel">
+                        <h5>Ateliers de Développement Personnel</h5>
+                        <p>Des sessions pour développer des compétences essentielles telles que la gestion du temps et la communication.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-light" id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="intro">
+                        <h6>Nos Réalisations</h6>
+                        <h1>Projets Réussis</h1>
+                        <p class="mx-auto">Notre école est fière de ses projets innovants qui enrichissent l'expérience éducative de nos élèves et renforcent notre engagement envers la communauté.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="projects-slider" class="owl-theme owl-carousel">
+            <div class="project">
+                <div class="overlay"></div>
+                <img src="{% static 'img/jardin.jpg' %}" alt="Projet de Jardin Éducatif">
+                <div class="content">
+                    <h2>Jardin Éducatif</h2>
+                    <h6>Apprentissage en Plein Air</h6>
+                </div>
+            </div>
+            <div class="project">
+                <div class="overlay"></div>
+                <img src="{% static 'img/lecture.jpg' %}" alt="Programme de Lecture">
+                <div class="content">
+                    <h2>Programme de Lecture</h2>
+                    <h6>Encouragement à la Lecture</h6>
+                </div>
+            </div>
+            <div class="project">
+                <div class="overlay"></div>
+                <img src="{% static 'img/concours.jpg' %}" alt="Concours de Science">
+                <div class="content">
+                    <h2>Concours de Science</h2>
+                    <h6>Exploration Scientifique</h6>
+                </div>
+            </div>
+            <div class="project">
+                <div class="overlay"></div>
+                <img src="{% static 'img/atelier.jpg' %}" alt="Atelier d'Art">
+                <div class="content">
+                    <h2>Atelier d'Art</h2>
+                    <h6>Créativité et Expression</h6>
+                </div>
+            </div>
+            <div class="project">
+                <div class="overlay"></div>
+                <img src="{% static 'img/projetco.jpg' %}" alt="Projets Communautaires">
+                <div class="content">
+                    <h2>Projets Communautaires</h2>
+                    <h6>Engagement Social</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="blog-container">
+        <h1 class="blog-title">info ou communiquer</h1>
+         
+        <div class="blog-list">
+            {% for blog in blogs %}
+                <div class="blog-card">
+                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="blog-image">
+                    <h2 class="blog-card-title">{{ blog.title }}</h2>
+                    <p class="blog-card-description">{{ blog.description|truncatechars:20 }}</p>
+                    <a href="{% url 'blog_detail' blog.id %}" class="related-blog-read-more">voir détail</a>
+                    <span class="blog-date">{{ blog.created_at|date:"d M Y" }}</span>
+                </div>
+            {% empty %}
+                <p>Aucun communiquer trouvé.</p>
+            {% endfor %}
+        </div>
+    </div>
+    
+
+   
+</div>
+
+<h1 class="gallery-title"> Galerie Photo de l'ecole</h1>
+    <div class="gallery">
+        <img src="{% static 'img/lecture.jpg' %}" alt="Image 1" class="gallery-item">
+        <img src="{% static 'img/rdc.jpg' %}" alt="Image 2" class="gallery-item">
+        <img src="{% static 'img/bg.jpg' %}" alt="Image 3" class="gallery-item">
+        <img src="{% static 'img/gb.jpg' %}" alt="Image 3" class="gallery-item">
+        <img src="{% static 'img/pic2.jpg' %}" alt="Image 3" class="gallery-item">
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <img class="lightbox-img" id="lightbox-img" src="">
+        <div class="controls">
+            <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+            <span class="close" onclick="closeLightbox()">&times;</span>
+            <button class="next" onclick="changeImage(1)">&#10095;</button>
+        </div>
+    </div>
+    
+    
+    
+<div class="contact-info">
+    <div class="contact-info-wrapper">
+        <div class="info-item">
+            <h3>Adresse</h3>
+            <p>123 Rue Exemple, Ville, Pays</p>
+        </div>
+        <div class="info-item">
+            <h3>Téléphone</h3>
+            <p>+123 456 7890</p>
+        </div>
+        <div class="info-item">
+            <h3>Email</h3>
+            <p>contact@example.com</p>
+        </div>
+        <div class="info-item">
+            <h3>Réseaux Sociaux</h3>
+            <div class="social-media">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Twitter</a>
+                <a href="#" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

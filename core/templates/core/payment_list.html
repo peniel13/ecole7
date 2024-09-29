@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="payment-container">
+    <h2>Paiements minerval pour {{ student.first_name }} {{ student.last_name }}</h2>
+
+    <p class="payment-count"><strong>Nombre de Paiements : </strong>{{ payments.count }}</p>
+
+    <div class="payment-list">
+        {% for payment in payments %}
+            <div class="payment-card">
+                <p><strong>Raison :</strong> {{ payment.reason }}</p>
+                <p><strong>Montant :</strong> {{ payment.amount }} €</p>
+                <p><strong>Mois :</strong> {{ payment.month }}</p>
+            </div>
+        {% empty %}
+            <div class="no-payments">
+                <p>Aucun enregistrement de paiement.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a class="back-button" href="{% url 'student_dashboard' student.id %}">Retour au Tableau de Bord</a>
+</div>
+{% endblock %}

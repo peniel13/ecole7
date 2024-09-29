@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="payment-form-container">
+    <h2>Déclarer une Convocation pour {{ user.first_name }} {{ user.last_name }}</h2>
+    <form method="post" class="payment-form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn-submit">Soumettre la Convocation</button>
+    </form>
+</div>
+{% endblock %}

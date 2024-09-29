@@ -1,0 +1,30 @@
+<!-- core/templates/core/declaration_form.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Declaration for {{ student.first_name }} {{ student.last_name }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <!-- Payment Form -->
+    <h3>Payment</h3>
+    {{ payment_form.as_p }}
+    <button type="submit" name="submit_payment">Submit Payment</button>
+
+    <!-- Behavior Form -->
+    <h3>Behavior</h3>
+    {{ behavior_form.as_p }}
+    <button type="submit" name="submit_behavior">Submit Behavior</button>
+
+    <!-- Note Form -->
+    <h3>Note</h3>
+    {{ note_form.as_p }}
+    <button type="submit" name="submit_note">Submit Note</button>
+
+    <!-- Attendance Form -->
+    <h3>Attendance</h3>
+    {{ attendance_form.as_p }}
+    <button type="submit" name="submit_attendance">Submit Attendance</button>
+</form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="declare-fees-container">
+    <h2>Déclarer Autres Frais pour {{ student.first_name }} {{ student.last_name }}</h2>
+
+    <form method="post" class="fees-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-submit">Soumettre les Frais</button>
+    </form>
+
+   
+</div>
+{% endblock %}

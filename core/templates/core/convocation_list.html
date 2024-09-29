@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="convocation-container">
+    <h2>Liste des Convocations pour {{ student.first_name }} {{ student.last_name }}</h2>
+
+    <div class="convocation-count">
+        <strong>Nombre de Convocations :</strong> {{ convocations.count }}
+    </div>
+
+    <div class="convocations-list">
+        {% if convocations %}
+            <ul>
+                {% for convocation in convocations %}
+                    <li class="convocation-card">
+                        <div class="convocation-details">
+                            <p><strong>Titre :</strong> {{ convocation.titre }}</p>
+                            <p><strong>Raison :</strong> {{ convocation.raison }}</p>
+                            <p><strong>Statut :</strong> {{ convocation.statut }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="no-convocations">
+                <p>Aucune convocation enregistrée.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="actions">
+        <a class="back-button" href="{% url 'student_dashboard' student.id %}">Retour au tableau de bord</a>
+    </div>
+</div>
+{% endblock %}
